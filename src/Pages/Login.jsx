@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { login } from "../Redux/AuthRedux/action";
-import { LOGIN_SUCCESS } from "../Redux/AuthRedux/actionType";
+// import { LOGIN_SUCCESS } from "../Redux/AuthRedux/actionType";
 import { useDispatch } from "react-redux";
+import { loginAsAdmin } from "../Redux/AuthRedux/action";
 import {
   Flex,
   Box,
@@ -18,28 +19,41 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
-  const location = useLocation();
-  const come = location.state?.from?.pathname || '/'
+  // const location = useLocation();
+  // const come = location.state?.from?.pathname || '/'
   const handleSubmit = (e) =>{
-    e.preventDefault();
-    if(email && password){
-          dispatch( login({
-            email,password
-          }))
-          .then((r)=>{
-            if(r.type === LOGIN_SUCCESS){
-              navigate(come,{replace: true})
-            }
-          })
+     e.preventDefault();
+          
+    if(email==="adminharsh@gmail.com" && password==="hey1234"){
+      let data={
+        email:"eve.holt@reqres.in",
+        password:"cityslicka"
+      }
+          dispatch( loginAsAdmin(
+            data
+          ))
+          navigate('/admin')
+    }
+    else{
+      dispatch( login({
+        email,password
+      }))
+      navigate("/")
     }
   }
+  
 
+
+
+  const handleClick=()=>{
+    navigate("/sigIn")
+  }
   return (
     <>
        <Flex
@@ -77,6 +91,15 @@ const Login = () => {
                   <Checkbox>Remember me</Checkbox>
                   <Link color={'blue.400'}>Forgot password?</Link>
                 </Stack>
+                <Stack
+                  direction={{ base: 'column', sm: 'row' }}
+                  align={'start'}
+                 >
+                  <Text>Are you a new your to this website   
+                  <Link color={'blue.400'} onClick={handleClick}>Create Account</Link>
+                  </Text>
+                </Stack>
+
                 <Button
                   bg={'blue.400'}
                   color={'white'}

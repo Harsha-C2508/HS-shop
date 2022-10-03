@@ -2,7 +2,9 @@
 import * as types from "./actionType"
 const initialState = {
   isAuth: false,
+  isAuthen: false,
   token: "",
+  tokens:"",
   isLoading: false,
   isError: false,
 };
@@ -31,6 +33,9 @@ const reducer = (state = initialState,action) => {
         isError:true
       }
 
+
+
+
     case types.SIGN_UP_REQUEST:
       return{
         ...state,
@@ -48,7 +53,32 @@ const reducer = (state = initialState,action) => {
         ...state,
         isLoading:false,
         isError:true
-      }    
+      } 
+
+
+
+
+      
+    case types.LOGIN_TO_ADMIN_REQUEST:
+      return{
+        ...state,
+        isLoading: true,
+        isError:false
+      }
+    case types.LOGIN_TO_ADMIN_SUCCESS:
+      return{
+        ...state,
+        isAuthen:true,
+        tokens:payload,
+        isLoading: false,
+        isError:false
+      } 
+    case types.LOGIN_TO_ADMIN_FAILURE:
+      return{
+        ...state,
+        isLoading: false,
+        isError:true
+      }      
     default:
       return state;
   }

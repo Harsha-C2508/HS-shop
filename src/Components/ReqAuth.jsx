@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const ReqAuth = ({children}) => {
     const location = useLocation();
     const auth = useSelector((store )=> store.AuthRedux.isAuth)
-
+    console.log('auth',auth)
     if(!auth){
       return <Navigate to='/login' state={{from:location}} replace/>
     }

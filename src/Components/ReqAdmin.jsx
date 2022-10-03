@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 
 const ReqAdmin = ({children}) => {
     const location = useLocation();
-    const auth = useSelector((store )=> store.AuthRedux.isAuth)
-
-    if(!auth){
-      return <Navigate to='/sigIn' state={{from:location}} replace/>
+    const authen = useSelector((store )=> store.AuthRedux.isAuthen)
+    console.log('admin',authen)
+    if(!authen){
+      return <Navigate to='/login' state={{from:location}} replace/>
     }
   return children
 };

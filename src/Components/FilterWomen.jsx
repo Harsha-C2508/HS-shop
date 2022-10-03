@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
-import { Box, Checkbox,Heading } from '@chakra-ui/react';
-
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Checkbox,Heading } from '@chakra-ui/react';
+import Styles from "../Styles/mens.module.css"
 const FilterWomen = () => {
     const [searchParams,setSearchParams] = useSearchParams()
     const initalParams = searchParams.getAll("cat")
@@ -27,57 +27,80 @@ const FilterWomen = () => {
     }
 
   useEffect(()=>{
-        if(cat || sortBy){
-            setSearchParams({cat:cat,
-            sortBy:sortBy})
-        }
-  },[cat,searchParams,sortBy,setSearchParams])
+    if(cat || sortBy){
+        const params = {}
+        cat && (params.cat = cat);
+        sortBy && (params.sortBy = sortBy);
+        setSearchParams(params)
+    }
+  },[cat,searchParams,sortBy])
 
-//    console.log(searchParams.getAll("cat"))
-console.log(sortBy)
   return (
-  <Box> 
+    <Accordion allowToggle w="190px" className={Styles.filters}>
+        <AccordionItem>
+            <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                    <Heading as='h3' size='lg' style={{fontSize:"20px",fontWeight:"bold",marginBottom:"10px"}}>Filters</Heading>
+                </Box>
+                <AccordionIcon/>
+            </AccordionButton>
 
-    <Heading as='h3' size='lg' style={{fontSize:"20px",fontWeight:"bold",marginBottom:"10px"}}>Filters</Heading>
-        <Box>
-            <Checkbox type="checkbox" value='Jeans' onChange={handleChange} defaultChecked={cat.includes('Jeans')}/>
-            <label style={{marginLeft:"10px"}}>Jeans</label>
-        </Box>
-        <br />
-        <Box>
-            <Checkbox type="checkbox" value='Top' onChange={handleChange} defaultChecked={cat.includes('Top')}/>
-            <label style={{marginLeft:"10px"}}>Top</label>
-        </Box>
-        <br />
-        <Box>
-            <Checkbox type="checkbox" value='Palazzo Pants' onChange={handleChange} defaultChecked={cat.includes('Palazzo Pants')}/>
-            <label style={{marginLeft:"10px"}}>Palazzo Pants</label>
-        </Box>
-        <br />
-        <Box>
-            <Checkbox type="checkbox" value='Skirts' onChange={handleChange} defaultChecked={cat.includes('Skirts')}/>
-            <label style={{marginLeft:"10px"}}>Skirts</label>
-        </Box> 
-        <br />
-        <Box>
-            <Checkbox type="checkbox" value='Sweaters' onChange={handleChange} defaultChecked={cat.includes('Sweaters')}/>
-            <label style={{marginLeft:"10px"}}>Sweaters</label>
-        </Box>  
+            <AccordionPanel>
+                <Box>
+                    <Checkbox type="checkbox" value='Jeans' onChange={handleChange} defaultChecked={cat.includes('Jeans')}/>
+                    <label style={{marginLeft:"10px"}}>Jeans</label>
+                </Box>
+                <br />
+                <Box>
+                    <Checkbox type="checkbox" value='Top' onChange={handleChange} defaultChecked={cat.includes('Top')}/>
+                    <label style={{marginLeft:"10px"}}>Top</label>
+                </Box>
+                <br />
+                <Box>
+                    <Checkbox type="checkbox" value='Palazzo Pants' onChange={handleChange} defaultChecked={cat.includes('Palazzo Pants')}/>
+                    <label style={{marginLeft:"10px"}}>Palazzo Pants</label>
+                </Box>
+                <br />
+                <Box>
+                    <Checkbox type="checkbox" value='Skirts' onChange={handleChange} defaultChecked={cat.includes('Skirts')}/>
+                    <label style={{marginLeft:"10px"}}>Skirts</label>
+                </Box> 
+                <br />
+                <Box>
+                    <Checkbox type="checkbox" value='Sweaters' onChange={handleChange} defaultChecked={cat.includes('Sweaters')}/>
+                    <label style={{marginLeft:"10px"}}>Sweaters</label>
+                </Box>  
 
-        <br />
-        <Heading as='h3' size='lg' style={{fontSize:"20px",fontWeight:"bold",marginBottom:"10px"}}>Sort</Heading>
-    <Box onChange={handleSortBy}>
-        <Box>
-            <input type="radio" value='asc' name='sortBy' defaultChecked={sortBy === 'asc'}/>
-            <label style={{marginLeft:"10px"}}>Low to High</label>
-        </Box>
-<br />
-        <Box>
-            <input type="radio" value='desc' name='sortBy' defaultChecked={sortBy === 'desc'}/>
-            <label style={{marginLeft:"10px"}}>High to Low</label>
-        </Box>
-    </Box>
-</Box>
+                <br />
+            </AccordionPanel>
+        </AccordionItem>
+
+
+        <AccordionItem>
+            <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                    <Heading as='h3' size='lg' style={{fontSize:"20px",fontWeight:"bold",marginBottom:"10px"}}>Sort</Heading>
+                </Box>
+                <AccordionIcon/>
+            </AccordionButton>
+
+            <AccordionPanel>
+            <Box onChange={handleSortBy}>
+                <Box>
+                    <input type="radio" value='asc' name='sortBy' defaultChecked={sortBy === 'asc'}/>
+                    <label style={{marginLeft:"10px"}}>Low to High</label>
+                </Box>
+                 <br />
+                <Box>
+                    <input type="radio" value='desc' name='sortBy' defaultChecked={sortBy === 'desc'}/>
+                    <label style={{marginLeft:"10px"}}>High to Low</label>
+                </Box>
+            </Box>
+            </AccordionPanel>
+        </AccordionItem>
+    </Accordion>
+    
+
   )
 }
 

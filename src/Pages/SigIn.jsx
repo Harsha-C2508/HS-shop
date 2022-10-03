@@ -23,7 +23,7 @@ const SigIn = () => {
     const [userNumber, setUserNumber] = useState("")
     const [userName, setUserName] = useState("")
     const token = useSelector((state)=>state.AuthRedux.token)
-    console.log("check Token", token)
+    console.log("token",token)
     const navigate = useNavigate()
   const submitHandler = (e)=>{
    e.preventDefault()

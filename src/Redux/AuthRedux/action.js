@@ -29,11 +29,31 @@ const login =(payload)=>(dispatch)=>{
         }
     })
     .then(res=>{ 
-        console.log(res.data)
      dispatch({type:types.SIGN_UP_SUCCESS,payload:res.data})
     })
     .catch(error=>{
      dispatch({type:types.SIGN_UP_FAILURE})
     })
 }
- export { login,signUp }
+
+
+const loginAsAdmin =(payload)=>(dispatch)=>{
+    console.log(payload);
+    dispatch({ type: types.LOGIN_TO_ADMIN_REQUEST });
+
+    return axios({
+        method: 'post',
+        url: '/api/login',
+        baseURL: 'https://reqres.in',
+        data: payload
+    })
+    
+    .then(r=> dispatch({
+        type: types.LOGIN_TO_ADMIN_SUCCESS,payload:r.data
+    }))
+    .catch(e=>
+        dispatch({ 
+            type: types.LOGIN_TO_ADMIN_FAILURE
+        }))
+}
+ export { login,signUp,loginAsAdmin }

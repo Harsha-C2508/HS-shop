@@ -4,10 +4,11 @@
 }
 .main{
     height: 80px;
-    width: 95%;
+    width: 100%;
     margin: auto;
     display: flex;
     justify-content: space-between;
+    background-color: white;
 }
 
 .main_inner{
@@ -15,6 +16,20 @@
     width: 55%;
     justify-content: space-between;
     margin-right: 20px;
+    background-color: white;
+    padding-top: 20px;
+    height: 60px;
+}
+
+.length{
+  border: 1px solid;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  font-size: 10px;
+  width: 20px;
+  margin-top: -25px;
+  margin-left: 65px;
 }
 
 /* image styling */
@@ -70,6 +85,9 @@
     font-weight:bold;
     font-size: 14 px;
 
+  }
+  .menuBox{
+   visibility: hidden; 
   }
   .dropdown:hover .dropdownC {
     display: block;
@@ -139,16 +157,42 @@
     .main_inner{
         width: 80%;
         margin-right: 0px;
-        font-size: 13px;
+        font-size: 3px;
         font-family: sans-serif;
     }
+    .menuBox{
+      visibility: visible; 
+      margin-right: 50px;
+     }
+     .head{
+      visibility: hidden;
+     }
 }
 
 @media only screen and (max-width: 900px) {
     .main_inner{
         width: 80%;
         margin-right: 0px;
-        font-size: 15px;
+        font-size: 10px;
         font-family: sans-serif;
     }
+}
+
+@media only screen and (max-width: 400px) {
+  .main_inner{
+      width: 80%;
+      margin: auto;
+      margin-right: 0px;
+      font-size: 14px;
+      font-family: sans-serif;
+
+  }
+  .menuBox{
+    visibility: visible; 
+    margin-left: -60px;
+    margin-right: 20px;
+   }
+   .head{
+    visibility: hidden;
+   }
 }

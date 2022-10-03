@@ -1,6 +1,7 @@
-import { Box,Heading, Checkbox, Radio } from '@chakra-ui/react';
+import { Box,Heading, Checkbox, Radio,Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
+
 
 const FilterPaints = () => {
     const [searchParams,setSearchParams] = useSearchParams()
@@ -27,36 +28,41 @@ const FilterPaints = () => {
     }
 
   useEffect(()=>{
-        if(cat || sortBy){
-            setSearchParams({cat:cat,
-            sortBy:sortBy})
-        }
-  },[cat,searchParams,sortBy,setSearchParams])
+    if(cat || sortBy){
+        const params = {}
+        cat && (params.cat = cat);
+        sortBy && (params.sortBy = sortBy);
+        setSearchParams(params)
+    }
+  },[cat,searchParams,sortBy])
 
-//    console.log(searchParams.getAll("cat"))
-console.log(sortBy)
   return (
-  <Box> 
 
-    <Heading as='h3' size='lg' style={{fontSize:"20px",fontWeight:"bold",marginBottom:"10px"}}>Filters</Heading>
-        <div>
-            <Checkbox type="checkbox" value='painting' onChange={handleChange}  defaultChecked={cat.includes('painting')}/>
-            <label style={{marginLeft:"10px"}}>Painting</label>
-        </div>
-<br />
-        <Heading as='h3' size='lg' style={{fontSize:"20px",fontWeight:"bold",marginBottom:"10px"}}>Sort</Heading>
-    <div onChange={handleSortBy}>
-        <div>
-            <Radio  value='asc' name='sortBy' defaultChecked={sortBy === 'asc'} />
-            <label style={{marginLeft:"10px"}}>Low to High</label>
-        </div>
-<br />
-        <div>
-            <Radio  value='desc' name='sortBy' defaultChecked={sortBy === 'desc'}/>
-            <label style={{marginLeft:"10px"}}>High to Low</label>
-        </div>
-    </div>
-</Box>
+  <Accordion allowToggle w="200px">
+        <AccordionItem>
+            <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                    <Heading as='h3' size='lg' style={{fontSize:"20px",fontWeight:"bold",marginBottom:"10px"}}>Sort</Heading>
+                </Box>
+                <AccordionIcon/>
+            </AccordionButton>
+
+            <AccordionPanel>
+                <Box onChange={handleSortBy}>
+                    <Box>
+                        <Radio  value='asc' name='sortBy' defaultChecked={sortBy === 'asc'} />
+                        <label style={{marginLeft:"10px"}}>Low to High</label>
+                    </Box>
+                        <br />
+                    <Box>
+                        <Radio  value='desc' name='sortBy' defaultChecked={sortBy === 'desc'}/>
+                        <label style={{marginLeft:"10px"}}>High to Low</label>
+                    </Box>
+                </Box>
+            </AccordionPanel>
+        </AccordionItem>
+    </Accordion>
+
   )
 }
 

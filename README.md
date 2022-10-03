@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Harsha's Collection
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the project which I have done during PR-RCT course.
 
-## Available Scripts
 
-In the project directory, you can run:
+Here you have the [deployed link](https://harshas-collection.vercel.app/cart).
 
-### `npm start`
+<h4>Lets look what are feactures of my website</h4>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h1>Home Page</h1>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img width="960" alt="hsHome" src="https://user-images.githubusercontent.com/99667782/191021055-7370b1b9-ce8b-4a44-860d-19047eeb2816.png">
+<p>In home you are able to see all the products avialable at this shop and you are allowed to filter and sort the products</p>
 
-### `npm test`
+<h1>Product Pages</h1>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h3>Mens page</h3>
+<img width="960" alt="hsMen" src="https://user-images.githubusercontent.com/99667782/191024475-8dae4da5-f5c4-40fe-80ef-9afdbc9c98ce.png">
+<h3>Womens Page</h3>
+<img width="960" alt="hswomen" src="https://user-images.githubusercontent.com/99667782/191028906-f892bbbd-e22a-429e-9a42-cee3f35b2d10.png">
+<h3>Painting Page</h3>
+<img width="951" alt="hsPainting" src="https://user-images.githubusercontent.com/99667782/191029031-7567cdb9-1b4f-423c-8bd3-36cf05e3629e.png">
 
-### `npm run build`
+<h2>About Product Page</h2>
+<p>In these product pages, In filter part you are able to see the products available within the page and you are alloweded to sort the product by price from low to high and high to low. Also you  will be able to see a buttons one for more details part onclicking this you will move to details page of the Product using Id </p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p>But If you want to see these pages first you have to login or create and account in the the website. If the auth is true then only you are alloweded to see the products available in each page</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h2>Login/Account Creation page</h2>
+<h3>Create Account</h3>
+<img width="960" alt="hsCreateAcc" src="https://user-images.githubusercontent.com/99667782/191035893-afd0f6e2-7e65-4b47-82e7-6ffb019e5477.png">
+<h3>Login Page</h3>
+<img width="960" alt="hsLogin" src="https://user-images.githubusercontent.com/99667782/191036031-bf5a7f66-4a57-46b5-a1a6-083bb5e5eadc.png">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<p>Here you can create a new  </p>
 
-### `npm run eject`
+<h2>Product Details Page </h2>
+<img width="960" alt="hsDetails" src="https://user-images.githubusercontent.com/99667782/191031422-2068cfd6-d9f6-4aaf-99a0-e32a266db725.png">
+<p>In this page you will get all the details about specific product like product image,price,category,ratings,offers and a button to add the item to the cart</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<h2>Cart Page</h2>
+<img width="960" alt="hsCart" src="https://user-images.githubusercontent.com/99667782/191035663-7292c9d5-2974-4771-b0bc-e0955d0fafdc.png">
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

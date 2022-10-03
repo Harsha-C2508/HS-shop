@@ -8,18 +8,20 @@ import { Input, Text,
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import AdminNav from "../Components/AdminNav";
 import { editProdData, getDataAtAdminPage } from "../Redux/AppRedux/action";
 
 const Editpage = ({offer,price,star,img}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const cancelRef = React.useRef()
-  const [offers, setOffers] = useState(offer)
-  const [prices,setPrices] = useState("")
-  const [stars,setStar] = useState("")
-  const [image,setImage] = useState("")
-  const params = useParams()
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+    const [offers, setOffers] = useState("")
+    const [prices,setPrices] = useState("")
+    const [stars,setStar] = useState("")
+    const [image,setImage] = useState("")
+    const params = useParams()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    // const data2 = useSelector((store)=>store.AppRedux.home);
 
 
   const handleClick = ()=>{
@@ -33,14 +35,16 @@ const Editpage = ({offer,price,star,img}) => {
     })
 
     getDataAtAdminPage(dispatch);
-      navigate(`/`)
+      navigate('/')
   }
   return (
+    <>
+    <AdminNav/>
     <Box style={{ width: "30%", margin: "auto", fontSize: "20px" }}>
       <Heading as='h3' size='lg'>Editing page</Heading>
       <Flex>
         <Text style={{width:"50%"}}>Image : </Text>
-        <Input  type="text" placeholder='Image' onChange={(e)=>setImage(e.target.value)}/>
+        <Input  type="text" placeholder='edit the image' onChange={(e)=>setImage(e.target.value)}/>
       </Flex>
 
       <Flex>
@@ -89,6 +93,7 @@ const Editpage = ({offer,price,star,img}) => {
       </AlertDialog>
       </Box>
     </Box>
+  </>
   );
 };
 

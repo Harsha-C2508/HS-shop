@@ -27,13 +27,12 @@ const Filters = () => {
 
   useEffect(()=>{
         if(cat || sortBy){
-            setSearchParams({cat:cat,
-            sortBy:sortBy})
+            const params = {}
+            cat && (params.cat = cat);
+            sortBy && (params.sortBy = sortBy);
+            setSearchParams(params)
         }
   },[cat,searchParams,sortBy])
-
-//    console.log(searchParams.getAll("cat"))
-console.log(sortBy)
   return (
   <div> 
 
