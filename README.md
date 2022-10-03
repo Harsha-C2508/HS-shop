@@ -77,6 +77,8 @@ Address part </p>
 <img width="960" alt="hsop-customerd" src="https://user-images.githubusercontent.com/99667782/193562474-267a5637-b968-427a-870f-340b8260a3bd.png">
 <p>In this page there are two part as our address is separated with home delivery and collect from shop. Here also I have separated the both thing and the data will be seen separatly also</p>
 
+<h2>Footer Part</h2>
+<img width="960" alt="hshop-footer" src="https://user-images.githubusercontent.com/99667782/193567444-d8c3f054-c7d5-4a4a-af8e-98515663c381.png">
+<p>Footer part of my website</p>
+
 <h2>Thank you :wave:</h2>
-
-
