@@ -9,17 +9,19 @@ Here you have the [deployed link](https://harshas-collection.vercel.app/cart).
 
 <h1>Home Page</h1>
 
-<img width="960" alt="hsHome" src="https://user-images.githubusercontent.com/99667782/191021055-7370b1b9-ce8b-4a44-860d-19047eeb2816.png">
+<img width="960" alt="hshop-home" src="https://user-images.githubusercontent.com/99667782/193546077-2792e717-6b56-4e9d-9dd8-7059d0c3a66c.png">
+
 <p>In home you are able to see all the products avialable at this shop and you are allowed to filter and sort the products</p>
 
 <h1>Product Pages</h1>
 
 <h3>Mens page</h3>
-<img width="960" alt="hsMen" src="https://user-images.githubusercontent.com/99667782/191024475-8dae4da5-f5c4-40fe-80ef-9afdbc9c98ce.png">
+<img width="960" alt="hshop-mens" src="https://user-images.githubusercontent.com/99667782/193546169-ca43c7bb-a546-4d04-bc80-e097b4f7b44c.png">
 <h3>Womens Page</h3>
-<img width="960" alt="hswomen" src="https://user-images.githubusercontent.com/99667782/191028906-f892bbbd-e22a-429e-9a42-cee3f35b2d10.png">
+<img width="949" alt="hshop-women" src="https://user-images.githubusercontent.com/99667782/193546254-e0797c94-ef2a-4769-8eaa-f05b17b9be49.png">
 <h3>Painting Page</h3>
-<img width="951" alt="hsPainting" src="https://user-images.githubusercontent.com/99667782/191029031-7567cdb9-1b4f-423c-8bd3-36cf05e3629e.png">
+<img width="960" alt="hshop-paint" src="https://user-images.githubusercontent.com/99667782/193546331-e22272a7-7155-4f31-b332-53a800d06817.png">
+
 
 <h2>About Product Page</h2>
 <p>In these product pages, In filter part you are able to see the products available within the page and you are alloweded to sort the product by price from low to high and high to low. Also you  will be able to see a buttons one for more details part onclicking this you will move to details page of the Product using Id </p>
@@ -28,16 +30,28 @@ Here you have the [deployed link](https://harshas-collection.vercel.app/cart).
 
 <h2>Login/Account Creation page</h2>
 <h3>Create Account</h3>
-<img width="960" alt="hsCreateAcc" src="https://user-images.githubusercontent.com/99667782/191035893-afd0f6e2-7e65-4b47-82e7-6ffb019e5477.png">
-<h3>Login Page</h3>
-<img width="960" alt="hsLogin" src="https://user-images.githubusercontent.com/99667782/191036031-bf5a7f66-4a57-46b5-a1a6-083bb5e5eadc.png">
+<img width="960" alt="hshop-createAccount" src="https://user-images.githubusercontent.com/99667782/193554827-48771ee6-3ab5-4205-96ef-ca69630862fa.png">
 
-<p>Here you can create a new  </p>
+<h3>Login Page</h3>
+<img width="960" alt="hshop-login" src="https://user-images.githubusercontent.com/99667782/193554877-6f32edb5-d258-4796-a2fa-c7504f5ff11d.png">
+
+<p> If you are a new commer to my shop you can create a new account and after creating new acount login to my website</p>
+<p>Also added a private part as admin with specific email and password. On entering that email and password directly redirecting to admin panel</p>
 
 <h2>Product Details Page </h2>
-<img width="960" alt="hsDetails" src="https://user-images.githubusercontent.com/99667782/191031422-2068cfd6-d9f6-4aaf-99a0-e32a266db725.png">
+<img width="960" alt="hshop-details" src="https://user-images.githubusercontent.com/99667782/193555459-f052acf0-134a-4fa7-85af-a07f28cc54de.png">
 <p>In this page you will get all the details about specific product like product image,price,category,ratings,offers and a button to add the item to the cart</p>
 
 <h2>Cart Page</h2>
-<img width="960" alt="hsCart" src="https://user-images.githubusercontent.com/99667782/191035663-7292c9d5-2974-4771-b0bc-e0955d0fafdc.png">
+<img width="960" alt="hshop-cart" src="https://user-images.githubusercontent.com/99667782/193556032-fb2d8892-1fbb-4c77-97e2-b24eb01f9bb2.png">
+<p>This how my cart page look like in left part you are able to see the product image and details about it and right you can see the billyou are alloweded to remove the items from here</p>
+
+<h2>Wish List Page</h2>
+<img width="960" alt="hshop-wishlist" src="https://user-images.githubusercontent.com/99667782/193556505-c652f393-46b8-4598-8c60-6e8da2accb8b.png">
+<p>This how my wishList page look like here the items are arranged in a grid formate and you can add the items from details page and you are alloweded to remove the items from here</p>
+
+<h2>Payment Part</h2>
+<img width="960" alt="hshop-payment" src="https://user-images.githubusercontent.com/99667782/193559111-cfa9a2c8-5966-4113-bbb0-20f41431450e.png">
+<P>In payment part there is two options one is for home delivery and the other one is for collect the item from shop. For these two there are some difference in
+Address part </p>
 
