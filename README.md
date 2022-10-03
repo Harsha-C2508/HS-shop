@@ -55,3 +55,28 @@ Here you have the [deployed link](https://harshas-collection.vercel.app/cart).
 <P>In payment part there is two options one is for home delivery and the other one is for collect the item from shop. For these two there are some difference in
 Address part </p>
 
+<h2>Thank you note </h2>
+<img width="960" alt="hshop-thankyou" src="https://user-images.githubusercontent.com/99667782/193560591-20bb00be-0a27-4d56-86cc-c87746542da5.png">
+<After entering the details you will be landing to this thank you note page and from here you can contniue the shopping by clicking contniue shopping  onclicking it redirected to home page</p>
+
+<h1>Admin part of my website</h1>
+
+<h2>Product Details</h2>
+<img width="960" alt="hshop-adminHome" src="https://user-images.githubusercontent.com/99667782/193561474-1231941b-2600-4c71-9908-d574a84f357d.png">
+<p>This is the home page of admin and here as a navbar you can see a menu bar on the top. In this page you can see all the products avaible with in my website and can see two buttons one for edition and another one for adding new product</p>
+
+<h2>Edit Item</h2>
+<img width="960" alt="hshop-edit" src="https://user-images.githubusercontent.com/99667782/193561945-fb356aab-76a4-4bba-b083-1f047817b054.png">
+<p>Here you can edit every details of a product and update it</p>
+
+<h2>Add New Product</h2>
+<img width="960" alt="hshop-newItem" src="https://user-images.githubusercontent.com/99667782/193562212-01461c67-0334-4ad4-9c72-d7c35c6a6bb7.png">
+<p>Here you can add new item to the main page of the website and you can see the new item in product details page too.</p>
+
+<h2>Customer Details</h2>
+<img width="960" alt="hsop-customerd" src="https://user-images.githubusercontent.com/99667782/193562474-267a5637-b968-427a-870f-340b8260a3bd.png">
+<p>In this page there are two part as our address is separated with home delivery and collect from shop. Here also I have separated the both thing and the data will be seen separatly also</p>
+
+<h2>Thank you :wave:</h2>
+
+
