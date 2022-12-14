@@ -5,7 +5,7 @@ import * as types from './actionType'
 const getPaintingData=(params)=>(dispatch)=>{
 dispatch({type:types.GET_DATA_PAINTING_REQUEST})
 return axios
-.get("https://api-myntra.herokuapp.com/painting",params)
+.get("https://bookapi-b62i.onrender.com/painting",params)
 .then((r)=>{
     return dispatch({
          type:types.GET_DATA_PAINTING_SUCCESS,
@@ -21,7 +21,7 @@ return axios
 const getHomeData=(params)=>(dispatch)=>{
     dispatch({type:types.GET_HOME_DATA_REQUEST1})
     return axios
-    .get("https://api-myntra.herokuapp.com/home",params)
+    .get("https://bookapi-b62i.onrender.com/home",params)
     .then((r)=>{
         return dispatch({
              type:types.GET_HOME_DATA_SUCCESS1,
@@ -37,7 +37,7 @@ const getHomeData=(params)=>(dispatch)=>{
     const getMensData=(params)=>(dispatch)=>{
         dispatch({type:types.GET_MENS_DATA_REQUEST2})
         return axios
-        .get("https://api-myntra.herokuapp.com/mensMeterial",params)
+        .get("https://bookapi-b62i.onrender.com/mensMeterial",params)
         .then((r)=>{
             return dispatch({
                  type:types.GET_MENS_DATA_SUCCESS2,
@@ -53,7 +53,7 @@ const getHomeData=(params)=>(dispatch)=>{
         const getWomensData=(params)=>(dispatch)=>{
             dispatch({type:types.GET_WOMENS_DATA_REQUEST3})
             return axios
-            .get("https://api-myntra.herokuapp.com/women",params)
+            .get("https://bookapi-b62i.onrender.com/women",params)
             .then((r)=>{
                 return dispatch({
                      type:types.GET_WOMENS_DATA_SUCCESS3,
@@ -71,7 +71,7 @@ const getHomeData=(params)=>(dispatch)=>{
          const getDataAtAdminPage=()=>(dispatch)=>{
             dispatch({type:types.ADMIN_PAGE_PRODUCT_REQUEST})
             return axios
-            .get("https://api-myntra.herokuapp.com/home")
+            .get("https://bookapi-b62i.onrender.com/home")
             .then((r)=>{
                 return dispatch({
                     type:types.ADMIN_PAGE_PRODUCT_SUCCESS,
@@ -88,7 +88,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.ADD_TO_CART_REQUEST})
             return axios({
                 method:"POST",
-                url:"https://api-myntra.herokuapp.com/cart",
+                url:"https://bookapi-b62i.onrender.com/cart",
                 data:{
                    ...data
                 }
@@ -105,7 +105,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.GET_DATA_FROM_CART_REQUEST})
             return axios({
                 method:"GET",
-                url:"https://api-myntra.herokuapp.com/cart"
+                url:"https://bookapi-b62i.onrender.com/cart"
               
             })
             .then(res=>{ 
@@ -123,7 +123,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.DELETE_THE_CART_ITEM_REQUEST})
             return axios({
                 method:"DELETE",
-                url:`https://api-myntra.herokuapp.com/cart/${data}`,
+                url:`https://bookapi-b62i.onrender.com/cart/${data}`,
             })
             .then(res=>{ 
                 
@@ -148,7 +148,7 @@ const getHomeData=(params)=>(dispatch)=>{
          
             return axios({
                 method:"GET",
-                url:`https://api-myntra.herokuapp.com/home/${id}`
+                url:`https://bookapi-b62i.onrender.com/home/${id}`
             })
             .then(res=>{ 
              dispatch({
@@ -166,7 +166,7 @@ const getHomeData=(params)=>(dispatch)=>{
          
             return axios({
                 method:"GET",
-                url:`https://api-myntra.herokuapp.com/mensMeterial/${id}`
+                url:`https://bookapi-b62i.onrender.com/mensMeterial/${id}`
             })
             .then(res=>{ 
              dispatch({
@@ -184,7 +184,7 @@ const getHomeData=(params)=>(dispatch)=>{
          
             return axios({
                 method:"GET",
-                url:`https://api-myntra.herokuapp.com/women/${id}`
+                url:`https://bookapi-b62i.onrender.com/women/${id}`
             })
             .then(res=>{ 
              dispatch({
@@ -203,7 +203,7 @@ const getHomeData=(params)=>(dispatch)=>{
          
             return axios({
                 method:"GET",
-                url:`https://api-myntra.herokuapp.com/painting/${id}`
+                url:`https://bookapi-b62i.onrender.com/painting/${id}`
             })
             .then(res=>{ 
              dispatch({
@@ -220,7 +220,7 @@ const getHomeData=(params)=>(dispatch)=>{
          const editProdData = ({dispatch,img,price,offer,star,params})=>{  
             dispatch({ type:types.EDIT_PRODUCT_REQUEST })
             axios({
-                url:`https://api-myntra.herokuapp.com/home/${params.id}`,
+                url:`https://bookapi-b62i.onrender.com/home/${params.id}`,
                 method:"PATCH",
                 data:{
                     img,
@@ -244,7 +244,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.ADD_NEW_PRODUCT_REQUEST})
 
             return axios
-            .post("https://api-myntra.herokuapp.com/home",payload)
+            .post("https://bookapi-b62i.onrender.com/home",payload)
             .then((r)=>{
                 dispatch({
                     type:types.ADD_NEW_PRODUCT_SUCCESS,
@@ -265,7 +265,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.ADD_DATA_SHOP_CUSTOMER_REQUEST})
 
             return axios
-            .post("https://newshop-1.herokuapp.com/userDetailShop",payload)
+            .post("https://bookapi-b62i.onrender.com/userDetailShop",payload)
             .then((r)=>{
                 dispatch({
                     type:types.ADD_DATA_SHOP_CUSTOMER_SUCCESS,
@@ -284,7 +284,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.GET_DATA_SHOP_CUSTOMER_REQUEST})
 
             return axios
-            .get("https://newshop-1.herokuapp.com/userDetailShop")
+            .get("https://bookapi-b62i.onrender.com/userDetailShop")
             .then((r)=>{
                 dispatch({
                     type:types.GET_DATA_SHOP_CUSTOMER_SUCCESS,
@@ -304,7 +304,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.ADD_DATA_HOME_CUSTOMER_REQUEST})
                 console.log("payload",payload)
             return axios
-            .post("https://newshop-1.herokuapp.com/userDetails",payload)
+            .post("https://bookapi-b62i.onrender.com/userDetails",payload)
             .then((r)=>{
                 dispatch({
                     type:types.ADD_DATA_HOME_CUSTOMER_SUCCESS,
@@ -323,7 +323,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.GET_DATA_HOME_CUSTOMER_REQUEST})
 
             return axios
-            .get("https://newshop-1.herokuapp.com/userDetails",payload)
+            .get("https://bookapi-b62i.onrender.com/userDetails",payload)
             .then((r)=>{
                 dispatch({
                     type:types.GET_DATA_HOME_CUSTOMER_SUCCESS,
@@ -345,7 +345,7 @@ const getHomeData=(params)=>(dispatch)=>{
             console.log("params",params)
             dispatch({ type:types.EDIT_STATUS_HOME_REQUEST })
             axios({
-                url:`https://newshop-1.herokuapp.com/userDetails/${params.id}`,
+                url:`https://bookapi-b62i.onrender.com/userDetails/${params.id}`,
                 method:"PATCH",
                 data:{
                     status
@@ -362,7 +362,7 @@ const getHomeData=(params)=>(dispatch)=>{
         const editStatusShop = ({dispatch,Sstatus,params})=>{  
             dispatch({ type:types.EDIT_STATUS_SHOP_REQUEST })
             axios({
-                url:`https://newshop-1.herokuapp.com/userDetailShop/${params.no}`,
+                url:`https://bookapi-b62i.onrender.com/userDetailShop/${params.no}`,
                 method:"PATCH",
                 data:{
                     Sstatus
@@ -382,7 +382,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.ADD_TO_WISH_REQUEST})
             return axios({
                 method:"POST",
-                url:"https://api-myntra.herokuapp.com/wish",
+                url:"https://bookapi-b62i.onrender.com/wish",
                 data:{
                    ...data
                 }
@@ -399,7 +399,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.GET_DATA_FROM_WISH_REQUEST})
             return axios({
                 method:"GET",
-                url:"https://api-myntra.herokuapp.com/wish"
+                url:"https://bookapi-b62i.onrender.com/wish"
               
             })
             .then(res=>{ 
@@ -417,7 +417,7 @@ const getHomeData=(params)=>(dispatch)=>{
             dispatch({type:types.DELETE_THE_WISH_ITEM_REQUEST})
             return axios({
                 method:"DELETE",
-                url:`https://api-myntra.herokuapp.com/wish/${data}`,
+                url:`https://bookapi-b62i.onrender.com/wish/${data}`,
             })
             .then(res=>{ 
                 
