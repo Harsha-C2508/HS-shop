@@ -3,7 +3,9 @@
 This is the project which I have done during PR-RCT course.
 
 
-Here you have the [deployed link](https://harshas-collection.vercel.app/cart).
+Here you have the [deployed link](https://harshas-collection.vercel.app).
+
+Here you have the [blog](https://medium.com/@harshac2508/hs-shop-b4752f5b861c)
 
 <h4>Lets look what are feactures of my website</h4>
 
