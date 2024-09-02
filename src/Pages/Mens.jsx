@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { getMensData} from '../Redux/AppRedux/action';
@@ -12,13 +12,21 @@ const Mens = () => {
 
   const dispatch = useDispatch();
   const data3 = useSelector((store)=>store.AppRedux.mens);
-  const isLoading = useSelector((store)=>store.AppRedux.isLoading)
    const [searchParams] = useSearchParams(); 
+   const [loading, setLoading] = useState(false);
     const location = useLocation();
+    const [error, setError] = useState(null);
 
+    useEffect(() => {
+      fetchData();
+    }, [searchParams,location.search]);
+  
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+    if (location || data3.length === 0) {
+      setError(null);
 
-  useEffect(()=>{
-    if(location || data3.length === 0){
       const sortBy = searchParams.get("sortBy")
       const queryParams = {
         params:{
@@ -27,13 +35,18 @@ const Mens = () => {
           _order: sortBy
         }
       } 
-      dispatch(getMensData(queryParams))
+      await  dispatch(getMensData(queryParams));
     }
-  },[location.search])
+      } catch (err) {
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+  };
   return (
    <>
      <Navbar/>
-{isLoading? <Spinner
+{loading? <Spinner
   thickness='4px'
   speed='0.65s'
   emptyColor='gray.200'

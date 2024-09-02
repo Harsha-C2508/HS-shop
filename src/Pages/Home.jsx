@@ -5,7 +5,7 @@ import { addWish, getDataDetailsMens, getDataFromWish, getHomeData} from '../Red
 import {RiHandHeartLine} from 'react-icons/ri'
 import Filters from '../Components/Filters';
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import Styles from "../Styles/Home.module.css"
+import Styles from "../Styles/home.module.css"
 import { Box, Button, Image } from '@chakra-ui/react';
 import Coursel from '../Styles/Coursel';
 import Navbar from '../Components/Navbar';

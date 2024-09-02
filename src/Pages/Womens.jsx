@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { getWomensData} from '../Redux/AppRedux/action';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import FilterWomen from '../Components/FilterWomen';
 import Styles from "../Styles/womens.module.css"
-import { Image,Box, Button } from '@chakra-ui/react';
+import { Image,Box, Button, Spinner } from '@chakra-ui/react';
 import Navbar from '../Components/Navbar';
 
 const Womens = () => {
@@ -13,25 +13,46 @@ const Womens = () => {
    const dispatch = useDispatch();
    const data4 = useSelector((store)=>store.AppRedux.womens);
    const [searchParams] = useSearchParams(); 
-  //  const isLoading = useSelector((store)=>store.AppRedux.isLoading)
-    const location = useLocation();
+   const isLoading = useSelector((store)=>store.AppRedux.isLoading)
+   const location = useLocation();
+   const [loading, setLoading] = useState(false);
+   const [error, setError] = useState(null);
+
   useEffect(()=>{
-    if(location || data4.length === 0){
-      const sortBy = searchParams.get("sortBy")
-      const queryParams = {
-        params:{
-          cat: searchParams.getAll('cat'),
-          _sort: sortBy && 'price',
-          _order: sortBy
-        }
-      } 
-      dispatch(getWomensData(queryParams))
+    fetchData();
+  },[searchParams])
+
+  const fetchData = async() =>{
+    setLoading(true);
+    try {
+      if(location || data4.length === 0){
+        const sortBy = searchParams.get("sortBy")
+        const queryParams = {
+          params:{
+            cat: searchParams.getAll('cat'),
+            _sort: sortBy && 'price',
+            _order: sortBy
+          }
+        } 
+       await dispatch(getWomensData(queryParams))
+      }
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
     }
-  },[location.search,data4.length,dispatch,location,searchParams])
+  }
   return (
     <>
 
     <Navbar/>
+    {loading || isLoading ? <Spinner
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/>:
     <Box  className={Styles.main}>
 
     <Box className={Styles.filterpart}>
@@ -40,7 +61,7 @@ const Womens = () => {
 
     <Box className={Styles.box}>
     {
-      data4.map((items)=>{
+      !loading&&data4.map((items)=>{
         return(
           <Box key={items.id} className={Styles.innerBox}>
             <Image src={items.img} alt="" className={Styles.imgSize}/>
@@ -60,10 +81,8 @@ const Womens = () => {
       })
     }
     </Box>
-</Box> 
-
-       
-           
+  </Box>     
+  }       
     </>
   )
 }

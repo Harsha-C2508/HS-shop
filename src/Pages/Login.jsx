@@ -25,6 +25,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [email,setEmail] = useState("")
   const [password,setPassword] = useState("")
+
   // const location = useLocation();
   // const come = location.state?.from?.pathname || '/'
   const handleSubmit = (e) =>{
@@ -95,8 +96,8 @@ const Login = () => {
                   direction={{ base: 'column', sm: 'row' }}
                   align={'start'}
                  >
-                  <Text>Are you a new your to this website   
-                  <Link color={'blue.400'} onClick={handleClick}>Create Account</Link>
+                  <Text>Are you a new your to this website ? 
+                  <Link color={'blue.400'} onClick={handleClick}> Create Account</Link>
                   </Text>
                 </Stack>
 
