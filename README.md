@@ -1,86 +1,144 @@
 # Harsha's Collection
 
-This is the project which I have done during PR-RCT course.
+A full-stack e-commerce application built with React and Node.js, featuring a product catalog across multiple categories, user authentication, cart & wishlist management, coupon support, order tracking, and real payments via Razorpay.
 
+## Tech Stack
 
-Here you have the [deployed link](https://harshas-collection.vercel.app).
+**Frontend:** React 18, Redux, Chakra UI, React Router, Axios
 
-Here you have the [blog](https://medium.com/@harshac2508/hs-shop-b4752f5b861c)
+**Backend:** Node.js, Express, MongoDB (Mongoose), JWT Authentication
 
-<h4>Lets look what are feactures of my website</h4>
+**Payments:** Razorpay (UPI, Cards, Net Banking, Wallets) + Cash on Delivery
 
-<h1>Home Page</h1>
+**Images:** Stored in MongoDB (no external file storage needed)
 
-<img width="960" alt="hshop-home" src="https://user-images.githubusercontent.com/99667782/193546077-2792e717-6b56-4e9d-9dd8-7059d0c3a66c.png">
+## Features
 
-<p>In home you are able to see all the products avialable at this shop and you are allowed to filter and sort the products</p>
+- **Product Catalog** — Browse products across categories (Men, Women, Footwear, Accessories, Home Decor, Paintings) with filtering and sorting
+- **Search** — Search products by name or category
+- **Authentication** — User registration, login, and admin access with JWT
+- **Cart & Wishlist** — Add/remove items, update quantities, move between cart and wishlist
+- **Checkout** — Multi-step checkout with address form, pincode auto-fill (Indian postal API), and saved default addresses
+- **Payments** — Real payment processing via Razorpay (UPI, cards, net banking, wallets) or Cash on Delivery
+- **Order Tracking** — View order history with status updates
+- **Coupons** — Apply discount codes at checkout
+- **Reviews** — Product review system
+- **Admin Panel** — Manage products (add, edit, delete), view customer orders, update order status
+- **Recently Viewed** — Tracks and displays recently viewed products
+- **Responsive Design** — Works on desktop and mobile
 
-<h1>Product Pages</h1>
+## Getting Started
 
-<h3>Mens page</h3>
-<img width="960" alt="hshop-mens" src="https://user-images.githubusercontent.com/99667782/193546169-ca43c7bb-a546-4d04-bc80-e097b4f7b44c.png">
-<h3>Womens Page</h3>
-<img width="949" alt="hshop-women" src="https://user-images.githubusercontent.com/99667782/193546254-e0797c94-ef2a-4769-8eaa-f05b17b9be49.png">
-<h3>Painting Page</h3>
-<img width="960" alt="hshop-paint" src="https://user-images.githubusercontent.com/99667782/193546331-e22272a7-7155-4f31-b332-53a800d06817.png">
+### Prerequisites
 
+- Node.js 18+
+- MongoDB (Atlas or local via Docker)
 
-<h2>About Product Page</h2>
-<p>In these product pages, In filter part you are able to see the products available within the page and you are alloweded to sort the product by price from low to high and high to low. Also you  will be able to see a buttons one for more details part onclicking this you will move to details page of the Product using Id </p>
+### 1. Clone and install dependencies
 
-<p>But If you want to see these pages first you have to login or create and account in the the website. If the auth is true then only you are alloweded to see the products available in each page</p>
+```bash
+git clone <repo-url>
+cd HS-shop
 
-<h2>Login/Account Creation page</h2>
-<h3>Create Account</h3>
-<img width="960" alt="hshop-createAccount" src="https://user-images.githubusercontent.com/99667782/193554827-48771ee6-3ab5-4205-96ef-ca69630862fa.png">
+# Frontend dependencies
+npm install
 
-<h3>Login Page</h3>
-<img width="960" alt="hshop-login" src="https://user-images.githubusercontent.com/99667782/193554877-6f32edb5-d258-4796-a2fa-c7504f5ff11d.png">
+# Backend dependencies
+npm install --prefix server
+```
 
-<p> If you are a new commer to my shop you can create a new account and after creating new acount login to my website</p>
-<p>Also added a private part as admin with specific email and password. On entering that email and password directly redirecting to admin panel</p>
+### 2. Configure environment variables
 
-<h2>Product Details Page </h2>
-<img width="960" alt="hshop-details" src="https://user-images.githubusercontent.com/99667782/193555459-f052acf0-134a-4fa7-85af-a07f28cc54de.png">
-<p>In this page you will get all the details about specific product like product image,price,category,ratings,offers and a button to add the item to the cart</p>
+Copy the example env files and fill in your values:
 
-<h2>Cart Page</h2>
-<img width="960" alt="hshop-cart" src="https://user-images.githubusercontent.com/99667782/193556032-fb2d8892-1fbb-4c77-97e2-b24eb01f9bb2.png">
-<p>This how my cart page look like in left part you are able to see the product image and details about it and right you can see the billyou are alloweded to remove the items from here</p>
+```bash
+# Frontend (root .env)
+cp .env.example .env
 
-<h2>Wish List Page</h2>
-<img width="960" alt="hshop-wishlist" src="https://user-images.githubusercontent.com/99667782/193556505-c652f393-46b8-4598-8c60-6e8da2accb8b.png">
-<p>This how my wishList page look like here the items are arranged in a grid formate and you can add the items from details page and you are alloweded to remove the items from here</p>
+# Backend (server/.env) — already has defaults for local development
+```
 
-<h2>Payment Part</h2>
-<img width="960" alt="hshop-payment" src="https://user-images.githubusercontent.com/99667782/193559111-cfa9a2c8-5966-4113-bbb0-20f41431450e.png">
-<P>In payment part there is two options one is for home delivery and the other one is for collect the item from shop. For these two there are some difference in
-Address part </p>
+**Server environment variables** (`server/.env`):
 
-<h2>Thank you note </h2>
-<img width="960" alt="hshop-thankyou" src="https://user-images.githubusercontent.com/99667782/193560591-20bb00be-0a27-4d56-86cc-c87746542da5.png">
-<After entering the details you will be landing to this thank you note page and from here you can contniue the shopping by clicking contniue shopping  onclicking it redirected to home page</p>
+| Variable | Description | Default |
+|---|---|---|
+| `PORT` | Server port | `5000` |
+| `MONGODB_URI` | MongoDB connection string | Atlas URI |
+| `JWT_SECRET` | Secret for signing JWT tokens | dev placeholder |
+| `ADMIN_EMAIL` | Admin login email | `admin@hsshop.com` |
+| `ADMIN_PASSWORD` | Admin login password | `ChangeMe123!` |
+| `RAZORPAY_KEY_ID` | Razorpay API Key ID (from [dashboard](https://dashboard.razorpay.com)) | — |
+| `RAZORPAY_KEY_SECRET` | Razorpay API Key Secret | — |
+| `CLIENT_URL` | Frontend URL for CORS | `http://localhost:3000` |
 
-<h1>Admin part of my website</h1>
+### 3. Set up Razorpay (for online payments)
 
-<h2>Product Details</h2>
-<img width="960" alt="hshop-adminHome" src="https://user-images.githubusercontent.com/99667782/193561474-1231941b-2600-4c71-9908-d574a84f357d.png">
-<p>This is the home page of admin and here as a navbar you can see a menu bar on the top. In this page you can see all the products avaible with in my website and can see two buttons one for edition and another one for adding new product</p>
+1. Create a free account at [dashboard.razorpay.com](https://dashboard.razorpay.com)
+2. Enable **Test Mode** (toggle in sidebar)
+3. Go to **Account & Settings > API Keys > Generate Key**
+4. Add the keys to `server/.env`:
+   ```
+   RAZORPAY_KEY_ID=rzp_test_your_key_id
+   RAZORPAY_KEY_SECRET=your_key_secret
+   ```
 
-<h2>Edit Item</h2>
-<img width="960" alt="hshop-edit" src="https://user-images.githubusercontent.com/99667782/193561945-fb356aab-76a4-4bba-b083-1f047817b054.png">
-<p>Here you can edit every details of a product and update it</p>
+Without Razorpay keys, Cash on Delivery still works.
 
-<h2>Add New Product</h2>
-<img width="960" alt="hshop-newItem" src="https://user-images.githubusercontent.com/99667782/193562212-01461c67-0334-4ad4-9c72-d7c35c6a6bb7.png">
-<p>Here you can add new item to the main page of the website and you can see the new item in product details page too.</p>
+### 4. Start the application
 
-<h2>Customer Details</h2>
-<img width="960" alt="hsop-customerd" src="https://user-images.githubusercontent.com/99667782/193562474-267a5637-b968-427a-870f-340b8260a3bd.png">
-<p>In this page there are two part as our address is separated with home delivery and collect from shop. Here also I have separated the both thing and the data will be seen separatly also</p>
+```bash
+# Terminal 1 — Backend (auto-seeds products + admin on first run)
+npm run dev --prefix server
 
-<h2>Footer Part</h2>
-<img width="960" alt="hshop-footer" src="https://user-images.githubusercontent.com/99667782/193567444-d8c3f054-c7d5-4a4a-af8e-98515663c381.png">
-<p>Footer part of my website</p>
+# Terminal 2 — Frontend
+npm start
+```
 
-<h2>Thank you :wave:</h2>
+The app opens at [http://localhost:3000](http://localhost:3000) with the backend API at [http://localhost:5000](http://localhost:5000).
+
+### Optional: Local MongoDB via Docker
+
+If you don't have MongoDB Atlas, run a local instance:
+
+```bash
+docker compose up -d
+```
+
+Then set `MONGODB_URI=mongodb://127.0.0.1:27017/hsshop` in `server/.env`.
+
+## Project Structure
+
+```
+HS-shop/
+├── public/                  # Static assets
+├── server/
+│   └── src/
+│       ├── config/          # Database connection
+│       ├── data/            # Product catalog & image data
+│       ├── middleware/       # Auth middleware (JWT)
+│       ├── models/          # Mongoose schemas (User, Product, Order, Cart, etc.)
+│       ├── routes/          # API routes (auth, products, cart, orders, payments, etc.)
+│       ├── index.js         # Express server entry point
+│       └── seed.js          # Database seeding script
+├── src/
+│   ├── api/                 # Axios client & helpers
+│   ├── CartList/            # Cart components
+│   ├── Checkout/            # Payment & thank-you pages
+│   ├── Components/          # Shared components (Navbar, ProductCard, Filters, etc.)
+│   ├── config/              # Frontend catalog config
+│   ├── hooks/               # Custom React hooks
+│   ├── Pages/               # Route pages (Home, Login, Admin, etc.)
+│   ├── Redux/               # Redux store, actions, reducers
+│   ├── SingleProd/          # Product detail & edit components
+│   ├── Styles/              # CSS modules
+│   ├── utils/               # Query helpers
+│   ├── WishList/            # Wishlist components
+│   └── App.js               # Root component with routing
+├── docker-compose.yml       # Local MongoDB setup
+├── .env.example             # Environment variable template
+└── package.json
+```
+
+## Admin Access
+
+Log in with the admin credentials from `server/.env` (default: `admin@hsshop.com` / `ChangeMe123!`) to access the admin panel where you can manage products and view customer orders.
