@@ -1,26 +1,12 @@
-import { CloseButton } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import { useDispatch} from 'react-redux'
-import { deleteCart} from '../Redux/AppRedux/action'
+import { CloseButton } from '@chakra-ui/react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteCart } from '../Redux/AppRedux/action';
 
-const Delete = (items) => {
-    const [id, setId] = useState("")
-    const dispatch = useDispatch()
+const Delete = ({ id }) => {
+  const dispatch = useDispatch();
 
-useEffect(()=>{
-  if(id){
-    dispatch(deleteCart(id))
-    window.location.reload();
-  }
- 
-},[id,dispatch])
+  return <CloseButton aria-label="Remove item" onClick={() => dispatch(deleteCart(id))} />;
+};
 
-  return (
-
-         <CloseButton onClick={()=>setId(items.id)}  />
-
-  )
-}
-
-export default Delete
+export default Delete;
