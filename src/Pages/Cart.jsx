@@ -1,89 +1,143 @@
-import { Box, Flex, Image, Select, Text,Link, useColorModeValue as mode, Divider, Button, SkeletonText,SkeletonCircle } from '@chakra-ui/react';
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getDataFromCart } from '../Redux/AppRedux/action';
+import {
+  Box,
+  Button,
+  Divider,
+  Flex,
+  Image,
+  Link,
+  Select,
+  Skeleton,
+  SkeletonText,
+  Stack,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDataFromCart, updateCartQuantity } from '../Redux/AppRedux/action';
 import Delete from '../CartList/Delete';
 import BillPart from '../CartList/BillPart';
 import { useNavigate } from 'react-router-dom';
-import Styles from '../Styles/Cart.module.css' 
 import Navbar from '../Components/Navbar';
+import { resolveImageUrl } from '../api/client';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const cart = useSelector((store)=>store.AppRedux.cart)||[];
-  const isLoading = useSelector((store)=>store.AppRedux.isLoading)
-  const navigate = useNavigate()
-  useEffect(()=>{
-    dispatch(getDataFromCart())
-  },[dispatch])
+  const navigate = useNavigate();
+  const cart = useSelector((store) => store.AppRedux.cart) || [];
+  const { isAuth } = useSelector((store) => store.AuthRedux);
+  const [loading, setLoading] = useState(true);
+  const linkColor = useColorModeValue('blue.500', 'blue.200');
 
-const handleClick=()=>{
-    navigate("/")
-}
+  useEffect(() => {
+    if (!isAuth) {
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    dispatch(getDataFromCart()).finally(() => setLoading(false));
+  }, [dispatch, isAuth]);
+
+  const handleQuantityChange = (itemId, value) => {
+    dispatch(updateCartQuantity(itemId, value));
+  };
+
   return (
     <>
-    {isLoading ?  <Box padding='6' boxShadow='lg' bg='white'>
-                    <SkeletonCircle size='10' />
-                    <SkeletonText mt='2' noOfLines={30} spacing='4' />
-                  </Box>
-                  :
-     <div>
-
-       <Navbar/>
-      {cart.length > 0 ? <Box w='97%' m='auto' gap='10px' className={Styles.box}>:
-      <Box padding='20px' w='70%' className={Styles.items}>
-      { cart.length > 0 && cart.map((items)=>{
-          return <div key={items.id}>
-          <Flex key={items.id} gap='30px' mt='20px' justifyContent='space-between'>
-            <Image src={items.img} alt={items.name} height='260px' borderRadius='10px' width='250px'/>
-                <Box width='20%'>
-                  <Text fontWeight='bold' mt='35px'>{items.name}</Text>
-                  <Text>₹{items.price}</Text>
+      <Navbar />
+      <Box maxW="1200px" mx="auto" px={4} py={6}>
+        {loading ? (
+          <Stack spacing={4}>
+            <Skeleton height="120px" borderRadius="md" />
+            <SkeletonText noOfLines={4} spacing={3} />
+          </Stack>
+        ) : !isAuth ? (
+          <Stack align="center" py={16} spacing={4}>
+            <Text fontWeight="700" fontSize="xl">
+              Please log in to view your cart
+            </Text>
+            <Button colorScheme="blue" onClick={() => navigate('/login', { state: { from: { pathname: '/cart' } } })}>
+              Login
+            </Button>
+          </Stack>
+        ) : cart.length === 0 ? (
+          <Stack align="center" py={12} spacing={4} maxW="320px" mx="auto">
+            <Image
+              src="https://constant.myntassets.com/checkout/assets/img/empty-bag.webp"
+              alt="Empty cart"
+              maxW="200px"
+            />
+            <Text fontWeight="700" fontSize="xl">
+              Your cart is empty
+            </Text>
+            <Button onClick={() => navigate('/')} variant="outline" colorScheme="red">
+              View Products
+            </Button>
+          </Stack>
+        ) : (
+          <Flex direction={{ base: 'column', lg: 'row' }} gap={8} align="flex-start">
+            <Stack flex={1} spacing={0} w="full">
+              {cart.map((item) => (
+                <Box key={item.id}>
+                  <Flex
+                    gap={{ base: 4, md: 6 }}
+                    py={5}
+                    direction={{ base: 'column', sm: 'row' }}
+                    align={{ base: 'stretch', sm: 'center' }}
+                  >
+                    <Image
+                      src={resolveImageUrl(item.img)}
+                      alt={item.name}
+                      boxSize={{ base: 'full', sm: '120px' }}
+                      maxH="120px"
+                      objectFit="cover"
+                      borderRadius="md"
+                      flexShrink={0}
+                    />
+                    <Box flex={1} minW={0}>
+                      <Text fontWeight="bold">{item.name}</Text>
+                      <Text mt={1}>₹{item.price}</Text>
+                      {(item.quantity || 1) > 1 && (
+                        <Text fontSize="sm" color="gray.500">
+                          ₹{item.price * (item.quantity || 1)} total
+                        </Text>
+                      )}
+                    </Box>
+                    <Flex align="center" gap={3} flexShrink={0}>
+                      <Select
+                        width="80px"
+                        size="sm"
+                        value={item.quantity || 1}
+                        onChange={(e) => handleQuantityChange(item.id, e.target.value)}
+                      >
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                          <option key={n} value={n}>
+                            {n}
+                          </option>
+                        ))}
+                      </Select>
+                      <Delete id={item.id} />
+                    </Flex>
+                  </Flex>
+                  <Divider />
                 </Box>
-                <Box>
-                <Select placeholder='1' width='150%' color='black' mt='30px'>
-                  <option value='2'>2</option>
-                  <option value='3'>3</option>
-                  <option value='4'>4</option>
-                  <option value='5'>5</option>
-                  <option value='6'>6</option>
-                  <option value='7'>7</option>
-                  <option value='8'>8</option>
-                  <option value='9'>9</option>
-                </Select>
-                </Box>
+              ))}
+            </Stack>
 
-              <Delete key={items.id} {...items} />
+            <Box w={{ base: 'full', lg: '340px' }} flexShrink={0}>
+              <BillPart />
+              <Flex justify="center" mt={4} gap={2} align="center">
+                <Text fontWeight="bold">or</Text>
+                <Link color={linkColor} onClick={() => navigate('/')} fontWeight="bold">
+                  Continue shopping
+                </Link>
+              </Flex>
+            </Box>
           </Flex>
-          <Divider mt="20px"/>
-          </div>
-        })
-      }
-    </Box>
-
-      <Box width='30%'>
-        <BillPart/>
-        <Flex ml='80px'> 
-        <p style={{fontWeight:"bold"}}>or</p>
-              <Link color={mode('blue.500', 'blue.200')} onClick={handleClick} ml='10px' fontWeight='bold'>Continue shopping</Link>
-        </Flex>
+        )}
       </Box>
-    </Box> :
-     <Box style={{width:'30%',margin:"auto",marginTop:"40px"}}>
-      <img src='https://constant.myntassets.com/checkout/assets/img/empty-bag.webp' alt='cartBag'/>
-      <Box>
-        <Text fontWeight='700' fontSize='20px'>Your cart is empty</Text>
-      </Box>
-      <Box mt='20px'>
-        <Button onClick={()=>{navigate("/")}} bg='white' border='2px solid red'>View Products</Button>
-      </Box>
-     </Box>
-     }
-     </div>
-    }
-    
     </>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;
