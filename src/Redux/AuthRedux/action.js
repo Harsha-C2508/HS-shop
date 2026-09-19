@@ -1,59 +1,79 @@
-import * as types from '../AuthRedux/actionType'
-import axios from 'axios'
+import * as types from '../AuthRedux/actionType';
+import client, { setAuthToken } from '../../api/client';
 
-const login =(payload)=>(dispatch)=>{
-    dispatch({ type: types.LOGIN_REQUEST });
-    return axios({
-        method: 'post',
-        url: '/api/login',
-        baseURL: 'https://reqres.in',
-        data: payload
+const applyAuthSuccess = (payload) => ({
+  type: types.LOGIN_SUCCESS,
+  payload,
+});
+
+const login = (payload) => (dispatch) => {
+  dispatch({ type: types.LOGIN_REQUEST });
+  return client
+    .post('/auth/login', payload)
+    .then((r) => {
+      const { token, user } = r.data;
+      setAuthToken(token);
+      dispatch(applyAuthSuccess({ token, user }));
+      return user;
     })
-    .then(r=> dispatch({
-        type: types.LOGIN_SUCCESS,payload:r.data
-    }))
-    .catch(e=>
-        dispatch({ 
-            type: types.LOGIN_FAILURE
-        }))
-}
+    .catch((e) => {
+      dispatch({
+        type: types.LOGIN_FAILURE,
+        payload: e.response?.data?.message || 'Login failed',
+      });
+      throw e;
+    });
+};
 
-
- const signUp = (payload)=>(dispatch)=>{
-    dispatch({type:types.SIGN_UP_REQUEST})
-    return axios({
-        method:"POST",
-        url:"https://reqres.in/api/register",
-        data:{
-           ...payload
-        }
+const signUp = (payload) => (dispatch) => {
+  dispatch({ type: types.SIGN_UP_REQUEST });
+  return client
+    .post('/auth/register', {
+      email: payload.email,
+      password: payload.password,
+      name: payload.name,
+      number: payload.number,
     })
-    .then(res=>{ 
-     dispatch({type:types.SIGN_UP_SUCCESS,payload:res.data})
+    .then((res) => {
+      const { token, user } = res.data;
+      setAuthToken(token);
+      dispatch({ type: types.SIGN_UP_SUCCESS, payload: { token, user } });
+      return user;
     })
-    .catch(error=>{
-     dispatch({type:types.SIGN_UP_FAILURE})
+    .catch((error) => {
+      dispatch({
+        type: types.SIGN_UP_FAILURE,
+        payload: error.response?.data?.message || 'Sign up failed',
+      });
+      throw error;
+    });
+};
+
+const restoreSession = () => (dispatch) => {
+  const token = localStorage.getItem('hs_shop_token');
+  if (!token) {
+    return Promise.resolve(null);
+  }
+
+  return client
+    .get('/auth/me')
+    .then((r) => {
+      dispatch({
+        type: types.RESTORE_SESSION,
+        payload: { token, user: r.data.user },
+      });
+      return r.data.user;
     })
-}
+    .catch(() => {
+      setAuthToken(null);
+      dispatch({ type: types.RESTORE_SESSION_FAILURE });
+      return null;
+    });
+};
 
+const logout = () => (dispatch) => {
+  setAuthToken(null);
+  dispatch({ type: types.LOGOUT });
+};
 
-const loginAsAdmin =(payload)=>(dispatch)=>{
-    console.log(payload);
-    dispatch({ type: types.LOGIN_TO_ADMIN_REQUEST });
-
-    return axios({
-        method: 'post',
-        url: '/api/login',
-        baseURL: 'https://reqres.in',
-        data: payload
-    })
-    
-    .then(r=> dispatch({
-        type: types.LOGIN_TO_ADMIN_SUCCESS,payload:r.data
-    }))
-    .catch(e=>
-        dispatch({ 
-            type: types.LOGIN_TO_ADMIN_FAILURE
-        }))
-}
- export { login,signUp,loginAsAdmin }
+export { login, signUp, restoreSession, logout };

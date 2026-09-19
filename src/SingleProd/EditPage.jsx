@@ -35,7 +35,7 @@ const Editpage = ({offer,price,star,img}) => {
     })
 
     getDataAtAdminPage(dispatch);
-      navigate('/')
+      navigate('/admin')
   }
   return (
     <>
