@@ -35,7 +35,7 @@
     "server:seed": "npm --prefix server run seed",
     "db:up": "docker compose up -d mongo",
     "db:down": "docker compose down",
-    "render-build": "npm install && npm --prefix server install && NODE_OPTIONS=--max-old-space-size=512 npm run build",
+    "render-build": "npm install && npm --prefix server install && GENERATE_SOURCEMAP=false NODE_OPTIONS=--max-old-space-size=1024 npm run build",
     "render-start": "node server/src/index.js"
   },
   "eslintConfig": {
