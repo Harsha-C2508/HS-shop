@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -34,6 +35,13 @@ app.use('/api/wish', wishlistRoutes);
 app.use('/api', orderRoutes);
 app.use('/api/images', require('./routes/images'));
 app.use('/api', productRoutes);
+
+// Serve React static files in production
+const clientBuild = path.join(__dirname, '..', '..', 'build');
+app.use(express.static(clientBuild));
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(clientBuild, 'index.html'));
+});
 
 app.use((err, _req, res, _next) => {
   console.error(err);
