@@ -76,7 +76,11 @@ const LEGACY_PHOTO = {
 const unsplashUrl = (photoId) =>
   `https://images.unsplash.com/photo-${photoId}?w=400&h=500&fit=crop&q=80`;
 
-const img = (legacyId) => `/api/images/${legacyId}.jpg`;
+const img = (legacyId) => {
+  const photoId = LEGACY_PHOTO[legacyId];
+  if (photoId) return unsplashUrl(photoId);
+  return `/api/images/${legacyId}.jpg`;
+};
 
 const getSourceUrl = (legacyId) => {
   const photoId = LEGACY_PHOTO[legacyId];
