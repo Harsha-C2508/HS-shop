@@ -1,5 +1,4 @@
 require('dotenv').config();
-const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
@@ -14,12 +13,7 @@ const paymentRoutes = require('./routes/payments');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    credentials: true,
-  })
-);
+app.use(cors({ credentials: true }));
 app.use(express.json());
 
 app.get('/api/health', (_req, res) => {
@@ -36,12 +30,6 @@ app.use('/api', orderRoutes);
 app.use('/api/images', require('./routes/images'));
 app.use('/api', productRoutes);
 
-// Serve React static files in production
-const clientBuild = path.join(__dirname, '..', '..', 'build');
-app.use(express.static(clientBuild));
-app.get('*', (_req, res) => {
-  res.sendFile(path.join(clientBuild, 'index.html'));
-});
 
 app.use((err, _req, res, _next) => {
   console.error(err);

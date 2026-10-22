@@ -1,0 +1,24 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "hs-shop": {
+      "root": ".",
+      "framework": "create-react-app",
+      "buildCommand": "GENERATE_SOURCEMAP=false NODE_OPTIONS=--max-old-space-size=1024 npm run build"
+    },
+    "server": {
+      "root": "server",
+      "framework": "express"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": { "service": "server" }
+    },
+    {
+      "source": "/(.*)",
+      "destination": { "service": "hs-shop" }
+    }
+  ]
+}
