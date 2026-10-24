@@ -4,7 +4,7 @@
     "hs-shop": {
       "root": ".",
       "framework": "create-react-app",
-      "buildCommand": "GENERATE_SOURCEMAP=false NODE_OPTIONS=--max-old-space-size=1024 npm run build"
+      "buildCommand": "CI=false GENERATE_SOURCEMAP=false NODE_OPTIONS=--max-old-space-size=1024 npm run build"
     },
     "server": {
       "root": "server",
