@@ -13,8 +13,17 @@ const paymentRoutes = require('./routes/payments');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Connect to DB once (cached across invocations in Vercel)
+const dbReady = connectDB().then(() => ensureSeeded());
+
 app.use(cors({ credentials: true }));
 app.use(express.json());
+
+// Ensure DB is connected before any route handler runs
+app.use(async (_req, _res, next) => {
+  await dbReady;
+  next();
+});
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
@@ -30,21 +39,18 @@ app.use('/api', orderRoutes);
 app.use('/api/images', require('./routes/images'));
 app.use('/api', productRoutes);
 
-
 app.use((err, _req, res, _next) => {
   console.error(err);
   res.status(500).json({ message: 'Internal server error' });
 });
 
-const start = async () => {
-  await connectDB();
-  await ensureSeeded();
-  app.listen(PORT, () => {
-    console.log(`HS-shop API running on http://localhost:${PORT}`);
-  });
-};
+// Export for Vercel serverless; also support standalone `node index.js`
+module.exports = app;
 
-start().catch((error) => {
-  console.error('Failed to start server:', error.message);
-  process.exit(1);
-});
+if (require.main === module) {
+  dbReady.then(() => {
+    app.listen(PORT, () => {
+      console.log(`HS-shop API running on http://localhost:${PORT}`);
+    });
+  });
+}
